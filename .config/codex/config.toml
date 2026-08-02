@@ -18,3 +18,12 @@ trust_level = "trusted"
 
 [projects."/Users/haruki/ghq/github.com/yasainet/dotfiles"]
 trust_level = "trusted"
+
+[projects."/home/tamoharu"]
+trust_level = "trusted"
+
+[projects."/home/tamoharu/dev/ComfyUI"]
+trust_level = "trusted"
+
+[projects."/home/tamoharu/dotfiles"]
+trust_level = "trusted"

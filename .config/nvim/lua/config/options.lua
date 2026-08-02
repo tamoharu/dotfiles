@@ -51,6 +51,9 @@ vim.opt.undofile = true
 vim.opt.autoread = true
 
 -- Clipboard
+if vim.env.SSH_CONNECTION and not vim.env.DISPLAY and not vim.env.WAYLAND_DISPLAY then
+	vim.g.clipboard = "osc52"
+end
 vim.opt.clipboard = "unnamedplus"
 
 -- Mouse
