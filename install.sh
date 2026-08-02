@@ -3,6 +3,7 @@ set -euo pipefail
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+CODEX_CONFIG_DIR="${CODEX_HOME:-$HOME/.codex}"
 INSTALL_PACKAGES=true
 LINK_CONFIG=true
 
@@ -76,12 +77,32 @@ link_one() {
   echo "    linked: $target -> $source"
 }
 
+link_codex_config() {
+  local source="$DOTFILES/.config/codex/config.toml"
+  local target="$CODEX_CONFIG_DIR/config.toml"
+
+  mkdir -p "$CODEX_CONFIG_DIR"
+
+  if [[ -L "$target" && "$(readlink "$target")" == "$source" ]]; then
+    echo "    already linked: $target"
+    return
+  fi
+
+  if [[ -e "$target" || -L "$target" ]]; then
+    backup_path "$target"
+  fi
+
+  ln -s "$source" "$target"
+  echo "    linked: $target -> $source"
+}
+
 link_config() {
   echo "==> Linking configuration"
   mkdir -p "$CONFIG_HOME"
   link_one ghostty
   link_one herdr
   link_one nvim
+  link_codex_config
 }
 
 $INSTALL_PACKAGES && install_packages
@@ -89,4 +110,3 @@ $LINK_CONFIG && link_config
 
 echo "==> Done"
 echo "Open Ghostty, then run: herdr"
-

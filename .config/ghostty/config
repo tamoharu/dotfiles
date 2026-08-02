@@ -12,6 +12,29 @@ clipboard-read = allow
 clipboard-write = allow
 clipboard-paste-protection = false
 
+# Copy a terminal selection when one exists; otherwise forward Cmd+C to Neovim.
+keybind = performable:cmd+c=copy_to_clipboard:mixed
+# Forward Cmd+X to applications that support the Kitty keyboard protocol.
+keybind = cmd+x=unbind
+
+# VS Code-style Neovim shortcuts
+keybind = cmd+s=unbind
+keybind = cmd+p=unbind
+keybind = cmd+shift+p=unbind
+keybind = cmd+f=unbind
+keybind = cmd+shift+f=unbind
+keybind = cmd+z=unbind
+keybind = cmd+shift+z=unbind
+keybind = cmd+a=unbind
+
+# Ghostty actions displaced by the Neovim shortcuts above
+keybind = cmd+alt+f=start_search
+keybind = cmd+alt+shift+f=end_search
+keybind = cmd+alt+a=select_all
+keybind = cmd+alt+shift+p=toggle_command_palette
+keybind = cmd+alt+z=undo
+keybind = cmd+alt+shift+z=redo
+
 # Window
 window-title-font-family = SF Mono
 window-theme = system
@@ -26,6 +49,10 @@ maximize = true
 
 # Theme
 theme = TokyoNight Night
+
+# Keep Japanese IME preedit text inline without an inverted block.
+selection-background = cell-background
+selection-foreground = #7dcfff
 
 # Font
 font-family = "PlemolJP Console NF"
@@ -88,8 +115,7 @@ keybind = cmd+seven=text:\x027
 keybind = cmd+eight=text:\x028
 keybind = cmd+nine=text:\x029
 
-# Cmd+Shift+[/] -> previous/next window
-keybind = cmd+shift+bracket_left=text:\x02p
+# Cmd+Shift+] -> next window
 keybind = cmd+shift+bracket_right=text:\x02n
 
 # Cmd+b -> copy mode (herdr prefix+[)
@@ -97,6 +123,24 @@ keybind = cmd+b=text:\x02[
 
 # Ctrl+q -> workspace selector (herdr goto = prefix+alt+g)
 keybind = ctrl+q=text:\x02\x1bg
+
+# --- popups ---
+
+# Cmd+y -> Yazi
+keybind = cmd+y=unbind
+keybind = cmd+y=text:\x02Y
+
+# Cmd+h -> Hunk (overrides the macOS Hide shortcut)
+keybind = cmd+h=unbind
+keybind = cmd+h=text:\x02H
+
+# Cmd+l -> Lazygit
+keybind = cmd+l=unbind
+keybind = cmd+l=text:\x02L
+
+# Cmd+j -> terminal (VS Code style)
+keybind = cmd+j=unbind
+keybind = cmd+j=text:\x02J
 
 # --- pane ---
 
@@ -117,3 +161,7 @@ keybind = cmd+shift+n=text:\x02N
 # Cmd+@ -> next Space
 keybind = cmd+@=unbind
 keybind = cmd+@=text:\x02@
+
+# Cmd+Shift+@ -> previous Space
+# On a JIS keyboard, Ghostty identifies the @ key as bracket_left.
+keybind = cmd+shift+bracket_left=text:\x02`

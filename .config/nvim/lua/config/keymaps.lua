@@ -12,6 +12,36 @@ vim.api.nvim_create_user_command("Q", "q", {})
 -- Quit
 vim.keymap.set("n", "<leader>qq", "<Cmd>qa<CR>", { desc = "Quit all" })
 
+-- VS Code-style clipboard
+-- Cmd+V remains handled by Ghostty's bracketed paste, which Neovim applies
+-- appropriately in normal, insert, and visual mode.
+vim.keymap.set("n", "<D-c>", '"+yy', { desc = "Copy line" })
+vim.keymap.set("x", "<D-c>", '"+ygv', { desc = "Copy selection" })
+vim.keymap.set("i", "<D-c>", '<C-o>"+yy', { desc = "Copy line" })
+vim.keymap.set("n", "<D-x>", '"+dd', { desc = "Cut line" })
+vim.keymap.set("x", "<D-x>", '"+d', { desc = "Cut selection" })
+vim.keymap.set("i", "<D-x>", '<C-o>"+dd', { desc = "Cut line" })
+
+-- VS Code-style common actions
+vim.keymap.set({ "n", "i", "x" }, "<D-s>", "<Cmd>write<CR>", { desc = "Save file" })
+vim.keymap.set({ "n", "i", "x" }, "<D-p>", function()
+	Snacks.picker.files()
+end, { desc = "Quick open file" })
+vim.keymap.set({ "n", "i", "x" }, "<D-S-p>", function()
+	Snacks.picker.commands()
+end, { desc = "Command palette" })
+vim.keymap.set({ "n", "i", "x" }, "<D-f>", function()
+	Snacks.picker.lines()
+end, { desc = "Find in file" })
+vim.keymap.set({ "n", "i", "x" }, "<D-S-f>", function()
+	Snacks.picker.grep()
+end, { desc = "Find in project" })
+vim.keymap.set({ "n", "i", "x" }, "<D-z>", "<Cmd>undo<CR>", { desc = "Undo" })
+vim.keymap.set({ "n", "i", "x" }, "<D-S-z>", "<Cmd>redo<CR>", { desc = "Redo" })
+vim.keymap.set("n", "<D-a>", "ggVG", { desc = "Select all" })
+vim.keymap.set("i", "<D-a>", "<Esc>ggVG", { desc = "Select all" })
+vim.keymap.set("x", "<D-a>", "<Esc>ggVG", { desc = "Select all" })
+
 -- Insert mode Emacs-style
 vim.keymap.set("i", "<C-a>", "<Home>", { desc = "Beginning of line" })
 vim.keymap.set("i", "<C-e>", "<End>", { desc = "End of line" })

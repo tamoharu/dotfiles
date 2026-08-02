@@ -12,8 +12,9 @@ new_cwd = "follow"
 prefix = "ctrl+b"
 detach = "prefix+shift+q"
 goto = "prefix+alt+g"
-new_workspace = "cmd+shift+n"
-next_workspace = "cmd+@"
+new_workspace = "prefix+shift+n"
+next_workspace = "prefix+@"
+previous_workspace = "prefix+backtick"
 navigate_workspace_down = "j"
 navigate_workspace_up = "k"
 previous_agent = "prefix+,"
@@ -47,29 +48,25 @@ cjk_ime_agents = ["claude", "opencode"]
 cjk_ime_cursor_shape = "block"
 
 [[keys.command]]
-key = "ctrl+h"
+key = "prefix+shift+y"
 type = "shell"
-command = "~/.config/herdr/scripts/nvim-nav.sh h"
+command = "~/.config/herdr/scripts/open-bottom-pane.sh yazi"
+description = "Yazi"
 
 [[keys.command]]
-key = "ctrl+j"
+key = "prefix+shift+h"
 type = "shell"
-command = "~/.config/herdr/scripts/nvim-nav.sh j"
+command = "~/.config/herdr/scripts/open-bottom-pane.sh hunk diff"
+description = "Hunk"
 
 [[keys.command]]
-key = "ctrl+k"
+key = "prefix+shift+l"
 type = "shell"
-command = "~/.config/herdr/scripts/nvim-nav.sh k"
+command = "~/.config/herdr/scripts/open-bottom-pane.sh lazygit"
+description = "Lazygit"
 
 [[keys.command]]
-key = "ctrl+l"
+key = "prefix+shift+j"
 type = "shell"
-command = "~/.config/herdr/scripts/nvim-nav.sh l"
-
-[[keys.command]]
-key = "prefix+g"
-type = "popup"
-command = "lazygit"
-description = "lazygit"
-width = "100%"
-height = "100%"
+command = '"$HERDR_BIN_PATH" pane split --pane "$HERDR_ACTIVE_PANE_ID" --direction down --ratio 0.7 --focus'
+description = "Terminal"
