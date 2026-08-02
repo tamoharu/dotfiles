@@ -1,0 +1,75 @@
+onboarding = false
+
+[theme]
+name = "tokyo-night"
+auto_switch = false
+
+[terminal]
+shell_mode = "auto"
+new_cwd = "follow"
+
+[keys]
+prefix = "ctrl+b"
+detach = "prefix+shift+q"
+goto = "prefix+alt+g"
+new_workspace = "cmd+shift+n"
+next_workspace = "cmd+@"
+navigate_workspace_down = "j"
+navigate_workspace_up = "k"
+previous_agent = "prefix+,"
+next_agent = "prefix+."
+
+[ui]
+accent = "cyan"
+sidebar_max_width = 20
+sidebar_collapsed_mode = "hidden"
+agent_panel_sort = "priority"
+pane_borders = true
+pane_gaps = true
+show_agent_labels_on_pane_borders = false
+prompt_new_tab_name = false
+hide_tab_bar_when_single_tab = true
+
+[ui.toast]
+delivery = "terminal"
+
+[ui.sound]
+enabled = true
+
+[session]
+resume_agents_on_restore = true
+
+[experimental]
+kitty_graphics = true
+switch_ascii_input_source_in_prefix = false
+reveal_hidden_cursor_for_cjk_ime = false
+cjk_ime_agents = ["claude", "opencode"]
+cjk_ime_cursor_shape = "block"
+
+[[keys.command]]
+key = "ctrl+h"
+type = "shell"
+command = "~/.config/herdr/scripts/nvim-nav.sh h"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "shell"
+command = "~/.config/herdr/scripts/nvim-nav.sh j"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "shell"
+command = "~/.config/herdr/scripts/nvim-nav.sh k"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "shell"
+command = "~/.config/herdr/scripts/nvim-nav.sh l"
+
+[[keys.command]]
+key = "prefix+g"
+type = "popup"
+command = "lazygit"
+description = "lazygit"
+width = "100%"
+height = "100%"

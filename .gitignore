@@ -1,0 +1,8 @@
+.DS_Store
+
+# Herdr runtime state (config and helper scripts stay tracked)
+.config/herdr/*
+!.config/herdr/config.toml
+!.config/herdr/scripts/
+!.config/herdr/scripts/**
+

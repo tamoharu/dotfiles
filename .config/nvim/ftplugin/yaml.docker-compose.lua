@@ -1,0 +1,1 @@
+-- Register yaml.docker-compose as a valid filetype for LSP healthcheck

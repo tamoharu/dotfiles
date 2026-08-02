@@ -1,0 +1,119 @@
+# Notifications
+desktop-notifications = true
+
+# Auto Update
+auto-update = download
+
+# Shell Integration
+shell-integration = none
+
+# Clipboard
+clipboard-read = allow
+clipboard-write = allow
+clipboard-paste-protection = false
+
+# Window
+window-title-font-family = SF Mono
+window-theme = system
+window-colorspace = display-p3
+window-save-state = always
+window-padding-balance = true
+macos-titlebar-style = transparent
+title = " "
+macos-titlebar-proxy-icon = hidden
+# background-opacity = 0.95
+maximize = true
+
+# Theme
+theme = TokyoNight Night
+
+# Font
+font-family = "PlemolJP Console NF"
+font-codepoint-map = U+2190-U+21FF=SF Mono
+font-codepoint-map = U+2300-U+23FF=SF Mono
+font-size = 15
+adjust-cell-height = 37.7%
+
+# Cursor
+cursor-style = block
+cursor-style-blink = true
+
+# Mouse
+mouse-hide-while-typing = true
+
+# Option key as Alt
+macos-option-as-alt = left
+
+# ==============================
+# Keybindings for Claude Code
+# ==============================
+
+keybind = shift+enter=unbind
+
+# Cmd+Enter -> Codex submit (Ctrl+Enter)
+keybind = cmd+enter=unbind
+keybind = cmd+enter=text:\x1b[13;5u
+
+# ==============================
+# Keybindings for herdr
+# ==============================
+
+# --- window ---
+
+# Cmd+t -> new window
+keybind = cmd+t=unbind
+keybind = cmd+t=text:\x02c
+
+# Cmd+w -> close tab
+keybind = cmd+w=unbind
+keybind = cmd+w=text:\x02X
+
+# Cmd+1~9 -> select window
+keybind = cmd+digit_1=unbind
+keybind = cmd+digit_2=unbind
+keybind = cmd+digit_3=unbind
+keybind = cmd+digit_4=unbind
+keybind = cmd+digit_5=unbind
+keybind = cmd+digit_6=unbind
+keybind = cmd+digit_7=unbind
+keybind = cmd+digit_8=unbind
+keybind = cmd+digit_9=unbind
+keybind = cmd+one=text:\x021
+keybind = cmd+two=text:\x022
+keybind = cmd+three=text:\x023
+keybind = cmd+four=text:\x024
+keybind = cmd+five=text:\x025
+keybind = cmd+six=text:\x026
+keybind = cmd+seven=text:\x027
+keybind = cmd+eight=text:\x028
+keybind = cmd+nine=text:\x029
+
+# Cmd+Shift+[/] -> previous/next window
+keybind = cmd+shift+bracket_left=text:\x02p
+keybind = cmd+shift+bracket_right=text:\x02n
+
+# Cmd+b -> copy mode (herdr prefix+[)
+keybind = cmd+b=text:\x02[
+
+# Ctrl+q -> workspace selector (herdr goto = prefix+alt+g)
+keybind = ctrl+q=text:\x02\x1bg
+
+# --- pane ---
+
+# Cmd+d -> split right (herdr split_vertical)
+keybind = cmd+d=unbind
+keybind = cmd+d=text:\x02v
+
+# Cmd+Shift+d -> split down (herdr split_horizontal)
+keybind = cmd+shift+d=unbind
+keybind = cmd+shift+d=text:\x02-
+
+# --- space ---
+
+# Cmd+Shift+n -> new Space
+keybind = cmd+shift+n=unbind
+keybind = cmd+shift+n=text:\x02N
+
+# Cmd+@ -> next Space
+keybind = cmd+@=unbind
+keybind = cmd+@=text:\x02@
