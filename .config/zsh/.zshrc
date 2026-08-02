@@ -70,8 +70,34 @@ rm() {
 }
 
 pj() {
-  local dev_root="$HOME/Sites/dev"
-  local selected dir
+  local dev_root selected dir level_dir
+  local depth=1
+
+  # Pick a dev directory at the shallowest level below HOME.
+  while [[ -z "$dev_root" ]]; do
+    dev_root=$(
+      find "$HOME" \
+        -mindepth "$depth" \
+        -maxdepth "$depth" \
+        -type d \
+        -name dev \
+        -print 2>/dev/null |
+        LC_ALL=C sort |
+        head -n 1
+    )
+    [[ -n "$dev_root" ]] && break
+
+    level_dir=$(
+      find "$HOME" \
+        -mindepth "$depth" \
+        -maxdepth "$depth" \
+        -type d \
+        -print \
+        -quit 2>/dev/null
+    )
+    [[ -n "$level_dir" ]] || break
+    (( depth++ ))
+  done
 
   selected=$(
     {
@@ -79,15 +105,17 @@ pj() {
         printf '%s\t[ghq] %s\n' "$dir" "${dir#$(ghq root)/}"
       done
 
-      find "$dev_root" \
-        -mindepth 2 \
-        -maxdepth 3 \
-        -name .git \
-        -print |
-        sed 's#/.git$##' |
-        while IFS= read -r dir; do
-          printf '%s\t[dev] %s\n' "$dir" "${dir#$dev_root/}"
-        done
+      if [[ -n "$dev_root" ]]; then
+        find "$dev_root" \
+          -mindepth 2 \
+          -maxdepth 3 \
+          -name .git \
+          -print |
+          sed 's#/.git$##' |
+          while IFS= read -r dir; do
+            printf '%s\t[dev] %s\n' "$dir" "${dir#$dev_root/}"
+          done
+      fi
     } |
       fzf \
         --height 40% \
