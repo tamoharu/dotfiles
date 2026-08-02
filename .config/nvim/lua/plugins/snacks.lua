@@ -41,6 +41,15 @@ return {
 					follow_file = true,
 					git_status = true,
 					diagnostics = false,
+					actions = {
+						explorer_yank_path = function(_, item)
+							if item then
+								local path = Snacks.picker.util.path(item)
+								vim.fn.setreg("+", path)
+								Snacks.notify.info("Yanked: " .. path)
+							end
+						end,
+					},
 					config = function(opts)
 						-- HACK: Gird against multi-wrap
 						local actions = require("snacks.explorer.actions")
@@ -98,6 +107,7 @@ return {
 							keys = {
 								["<C-v>"] = { "edit_vsplit", mode = { "n" } },
 								["<C-s>"] = { "edit_split", mode = { "n" } },
+								["<leader>yp"] = "explorer_yank_path",
 								["<C-j>"] = false,
 								["<C-k>"] = false,
 								["P"] = "none", -- Disable preview

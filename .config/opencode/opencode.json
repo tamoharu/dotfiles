@@ -1,11 +1,55 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "permission": "allow",
-  "instructions": [
-    "~/.claude/output-styles/concise.md"
-  ],
+  "default_agent": "plan",
+  "instructions": ["~/.claude/output-styles/concise.md"],
   "lsp": true,
   "autoupdate": true,
+  "provider": {
+    "llamacpp": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "llama.cpp",
+      "options": {
+        "baseURL": "http://100.68.179.125:8080/v1"
+      },
+      "models": {
+        "qwen3.6-35b-a3b": {
+          "name": "qwen3.6-35b-a3b",
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "qwen3.6-35b-a3b-hauhau-aggressive": {
+          "name": "qwen3.6-35b-a3b-hauhau-aggressive",
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "qwen3.6-27b-hauhau-balanced": {
+          "name": "qwen3.6-27b-hauhau-balanced",
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        }
+      }
+    }
+  },
+  "model": "llamacpp/qwen3.6-35b-a3b-hauhau-aggressive",
   "plugin": ["file://{env:HOME}/.config/opencode/plugins/abc-layout.js"],
   "logLevel": "DEBUG",
   "watcher": {
