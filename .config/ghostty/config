@@ -71,6 +71,9 @@ mouse-hide-while-typing = true
 # Option key as Alt
 macos-option-as-alt = left
 
+# JIS yen key -> backslash
+keybind = ¥=text:\x5c
+
 # ==============================
 # Keybindings for Claude Code
 # ==============================

@@ -74,3 +74,32 @@ vim.api.nvim_create_autocmd("FocusGained", {
 		end
 	end,
 })
+
+-- Send Finder drops received by the explorer to its editing window.
+local paste = vim.paste
+vim.paste = function(lines, phase)
+	if vim.bo.filetype == "snacks_picker_list" and not vim.bo.modifiable then
+		local ok, snacks = pcall(require, "snacks")
+		if ok then
+			local current = vim.api.nvim_get_current_win()
+			for _, picker in ipairs(snacks.picker.get({ source = "explorer" })) do
+				local target = picker.main
+				if not picker.closed
+					and picker.list.win.win == current
+					and vim.api.nvim_win_is_valid(target)
+					and vim.bo[vim.api.nvim_win_get_buf(target)].modifiable
+				then
+					vim.api.nvim_set_current_win(target)
+					return paste(lines, phase)
+				end
+			end
+		end
+
+		if phase < 2 then
+			vim.notify("No editable window for pasted file", vim.log.levels.WARN)
+		end
+		return true
+	end
+
+	return paste(lines, phase)
+end
