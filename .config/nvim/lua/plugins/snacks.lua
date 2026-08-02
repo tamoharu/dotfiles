@@ -37,7 +37,7 @@ return {
 				},
 				explorer = {
 					hidden = true,
-					ignored = false,
+					ignored = true,
 					follow_file = true,
 					git_status = true,
 					diagnostics = false,
