@@ -2,8 +2,8 @@
 set -euo pipefail
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-CODEX_CONFIG_DIR="${CODEX_HOME:-$HOME/.codex}"
+export DOTFILES
+OS="$(uname -s)"
 INSTALL_PACKAGES=true
 LINK_CONFIG=true
 
@@ -11,7 +11,7 @@ usage() {
   cat <<'EOF'
 Usage: ./install.sh [--links-only | --packages-only]
 
-  --links-only     Link configuration without installing Homebrew packages
+  --links-only     Link configuration without installing packages
   --packages-only  Install packages without changing configuration links
 EOF
 }
@@ -25,88 +25,32 @@ for arg in "$@"; do
   esac
 done
 
-install_homebrew() {
-  if command -v brew >/dev/null 2>&1; then
-    return
-  fi
-
-  if [[ "$(uname -s)" != Darwin ]]; then
-    echo "Homebrew is required. Install it first: https://brew.sh" >&2
+# shellcheck source=scripts/common.sh
+source "$DOTFILES/scripts/common.sh"
+case "$OS" in
+  Darwin)
+    # shellcheck source=scripts/darwin.sh
+    source "$DOTFILES/scripts/darwin.sh"
+    ;;
+  Linux)
+    # shellcheck source=scripts/linux.sh
+    source "$DOTFILES/scripts/linux.sh"
+    ;;
+  *)
+    echo "Unsupported OS: $OS" >&2
     exit 1
-  fi
-
-  echo "==> Installing Homebrew"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-  if [[ -x /opt/homebrew/bin/brew ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  elif [[ -x /usr/local/bin/brew ]]; then
-    eval "$(/usr/local/bin/brew shellenv)"
-  fi
-}
-
-install_packages() {
-  install_homebrew
-  echo "==> Installing Ghostty, Herdr, Neovim, and dependencies"
-  brew bundle --file "$DOTFILES/Brewfile"
-}
-
-backup_path() {
-  local path="$1"
-  local backup
-  backup="${path}.backup.$(date +%Y%m%d%H%M%S)"
-  mv "$path" "$backup"
-  echo "    backed up: $path -> $backup"
-}
-
-link_one() {
-  local name="$1"
-  local source="$DOTFILES/.config/$name"
-  local target="$CONFIG_HOME/$name"
-
-  if [[ -L "$target" && "$(readlink "$target")" == "$source" ]]; then
-    echo "    already linked: $target"
-    return
-  fi
-
-  if [[ -e "$target" || -L "$target" ]]; then
-    backup_path "$target"
-  fi
-
-  ln -s "$source" "$target"
-  echo "    linked: $target -> $source"
-}
-
-link_codex_config() {
-  local source="$DOTFILES/.config/codex/config.toml"
-  local target="$CODEX_CONFIG_DIR/config.toml"
-
-  mkdir -p "$CODEX_CONFIG_DIR"
-
-  if [[ -L "$target" && "$(readlink "$target")" == "$source" ]]; then
-    echo "    already linked: $target"
-    return
-  fi
-
-  if [[ -e "$target" || -L "$target" ]]; then
-    backup_path "$target"
-  fi
-
-  ln -s "$source" "$target"
-  echo "    linked: $target -> $source"
-}
-
-link_config() {
-  echo "==> Linking configuration"
-  mkdir -p "$CONFIG_HOME"
-  link_one ghostty
-  link_one herdr
-  link_one nvim
-  link_codex_config
-}
+    ;;
+esac
 
 $INSTALL_PACKAGES && install_packages
 $LINK_CONFIG && link_config
+$INSTALL_PACKAGES && post_install
 
-echo "==> Done"
-echo "Open Ghostty, then run: herdr"
+echo "==> Setup complete"
+if [[ "$OS" == Linux ]]; then
+  echo "Reconnect to SSH (or run: exec zsh), then authenticate tools as needed:"
+  echo "  codex login --device-auth"
+  echo "  gh auth login"
+else
+  echo "Open Ghostty, then run: herdr"
+fi

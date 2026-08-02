@@ -1,0 +1,48 @@
+# espanso matches (snippets)
+# yaml-language-server: $schema=https://raw.githubusercontent.com/espanso/espanso/dev/schemas/match.schema.json
+
+matches:
+  # Terms
+  - trigger: ";js"
+    replace: "JavaScript"
+  - trigger: ";ts"
+    replace: "TypeScript"
+  - trigger: ";ne"
+    replace: "Next.js"
+  - trigger: ";node"
+    replace: "Node.js"
+  - trigger: ";ed"
+    replace: "Edge Functions"
+  - trigger: ";pg"
+    replace: "PostgreSQL"
+  # Services
+  - trigger: ";cf"
+    replace: "Cloudflare"
+  - trigger: ";cc"
+    replace: "Claude Code"
+  - trigger: ";oc"
+    replace: "OpenCode"
+  - trigger: ";co"
+    replace: "ComfyUI"
+  # Date
+  - trigger: ";date"
+    replace: "{{d}}"
+    vars:
+      - name: d
+        type: date
+        params:
+          format: "%Y/%m/%d"
+  - trigger: ";time"
+    replace: "{{d}}"
+    vars:
+      - name: d
+        type: date
+        params:
+          format: "%H:%M:%S"
+  - trigger: ";now"
+    replace: "{{d}}"
+    vars:
+      - name: d
+        type: date
+        params:
+          format: "%Y/%m/%d %H:%M"

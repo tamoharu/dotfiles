@@ -1,46 +1,83 @@
-# terminal dotfiles
+# dotfiles
 
-Ghostty + Herdr + Neovim + Codex の個人開発環境です。
+macOS と Ubuntu の開発環境を、一つのリポジトリから再現するためのdotfilesです。
 
 ## 対応環境
 
-- macOS (Apple Silicon / Intel)
-- Homebrew は未導入でもインストーラーが導入します
+- macOS（Apple Silicon / Intel）
+- Ubuntu Linux（x86_64 / arm64、SSH先を含む）
 
 ## セットアップ
 
 ```sh
+sudo apt-get update && sudo apt-get install -y git # Ubuntuのみ
+mkdir -p ~/ghq/github.com/tamoharu
 git clone https://github.com/tamoharu/dotfiles.git ~/ghq/github.com/tamoharu/dotfiles
 cd ~/ghq/github.com/tamoharu/dotfiles
 ./install.sh
 ```
 
-既存の `~/.config/{ghostty,herdr,nvim}` は削除せず、日時付きの
-`*.backup.YYYYMMDDhhmmss` に移動してからリンクします。何度実行しても、
-すでに正しいリンクになっている設定は変更しません。
+完了後はシェルを開き直します。
 
-Codex は `~/.codex/config.toml` のみを同様にリンクします。認証情報や
-セッションなど、`~/.codex` 内のほかのファイルは管理対象にしません。
+```sh
+exec zsh
+```
 
-パッケージを入れず設定だけ切り替える場合:
+SSH先では、CodexとGitHub CLIをそれぞれ認証します。
+
+```sh
+codex login --device-auth
+gh auth login
+```
+
+パッケージを入れず、設定リンクだけ作成する場合:
 
 ```sh
 ./install.sh --links-only
 ```
 
-設定を切り替えずパッケージだけ入れる場合:
+設定を変更せず、パッケージだけ導入する場合:
 
 ```sh
 ./install.sh --packages-only
 ```
 
-## 含まれるもの
+既存の設定は削除せず、`*.backup.YYYYMMDDhhmmss` に移動してからリンクします。
+同じリンクに対して再実行しても変更しません。
 
-- Ghostty のテーマ、フォント、Herdr 向けキーバインド
-- Herdr のワークスペース、ペイン移動、Neovim 連携
-- Neovim の Lua 設定と `lazy.nvim` lockfile
-- Codex のモデル、TUI キーマップ、承認・権限設定
-- 再現に必要な Homebrew パッケージとフォント (`Brewfile`)
+## 含まれる環境
 
-Neovim のプラグインは初回起動時に `lazy.nvim` が lockfile のバージョンで
-導入します。LSP・formatter・linter は Mason が自動導入します。
+- zsh、fzf、direnv、mise、nvm/Node.js
+- Neovim、Yazi、tmux、bat、btop、ripgrep、fd
+- Git、GitHub CLI、ghq、Lazygit、Hunk
+- Codex CLI、OpenCode、Herdr
+- Ghostty、Hammerspoon、Karabiner、Espanso（macOS）
+- Tokyo Night系のターミナル・TUIテーマ
+
+UbuntuではNeovim、Yaziなど、ディストリビューション標準版が古くなりやすい
+ツールをリリースバイナリから固定バージョンで導入します。macOSではBrewfileを
+使用します。
+
+## 設定の扱い
+
+設定ディレクトリは原則として `~/.config` へリンクします。例外として、Codexは
+認証情報やセッションを巻き込まないよう `~/.codex/config.toml` だけをリンクします。
+
+認証情報、履歴、ログ、実行時状態はGitの追跡対象にしません。マシン固有の値は
+次のファイルへ記述します。
+
+```sh
+cp ~/.config/zsh/local.zsh.example ~/.config/zsh/local.zsh
+```
+
+`local.zsh` はgitignoreされています。
+
+## SSHでの利用
+
+```sh
+ssh queen
+tmux new-session -A -s dev
+```
+
+tmuxではGhosttyのtrue color、OSC 52クリップボード、Yaziの画像プロトコルを通し
+やすい設定を有効にしています。画像プレビューの可否は接続元ターミナルにも依存します。

@@ -12,3 +12,6 @@ insert_newline = ["enter", "ctrl-j", "shift-enter"]
 
 [projects."/Users/haruki/ghq/github.com/tamoharu/dotfiles"]
 trust_level = "trusted"
+
+[projects."/Users/haruki"]
+trust_level = "trusted"

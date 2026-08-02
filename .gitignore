@@ -1,8 +1,30 @@
 .DS_Store
+*.local
+.worktrees/
+
+# Shell runtime state
+.config/zsh/.zcompcache/
+.config/zsh/.zcompdump*
+.config/zsh/.zsh_history
+.config/zsh/.zsh_sessions/
+.config/zsh/completions/
+.config/zsh/local.zsh
+
+# Authentication and machine state
+.config/espanso/match/private.yml
+.config/gh/hosts.yml
+.config/github-copilot/
+.config/hunk/state.json
+.config/opencode/node_modules/
+.config/opencode/package.json
+.config/opencode/package-lock.json
+.config/opencode/bun.lock
+
+# Downloaded theme cache
+.config/bat/themes/tokyonight_night.tmTheme
 
 # Herdr runtime state (config and helper scripts stay tracked)
 .config/herdr/*
 !.config/herdr/config.toml
 !.config/herdr/scripts/
 !.config/herdr/scripts/**
-

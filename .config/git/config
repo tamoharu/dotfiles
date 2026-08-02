@@ -1,0 +1,47 @@
+[user]
+	name = tamoharu
+	email = 133945583+tamoharu@users.noreply.github.com
+
+[color]
+	ui = auto
+
+[push]
+	default = current
+
+[core]
+	ignorecase = false
+
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+	username = tamoharu
+
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential
+
+[merge]
+	commit = no
+
+[pager]
+	branch = false
+	tag = false
+
+[credential "http://localhost:8929"]
+	provider = generic
+
+[credential "http://127.0.0.1:8929"]
+	provider = generic
+
+[init]
+	defaultBranch = main
+[credential "http://127.0.0.1:3030"]
+	provider = generic
+[ghq]
+	root = ~/ghq

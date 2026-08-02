@@ -1,0 +1,10 @@
+# espanso global config
+# yaml-language-server: $schema=https://raw.githubusercontent.com/espanso/espanso/dev/schemas/config.schema.json
+
+# backend: Clipboard
+
+# disable Alt+Space
+search_shortcut: off
+
+# hide the menu bar icon
+show_icon: false

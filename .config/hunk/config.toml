@@ -1,0 +1,57 @@
+mode = "auto"
+theme = "custom"
+
+[custom_theme]
+base = "graphite"
+label = "Tokyo Night"
+
+background = "#1a1b26"
+panel = "#16161e"
+panelAlt = "#1f2335"
+border = "#3b4261"
+accent = "#7aa2f7"
+accentMuted = "#394b70"
+text = "#c0caf5"
+muted = "#565f89"
+
+addedBg = "#243e4a"
+addedContentBg = "#2c5a66"
+addedSignColor = "#449dab"
+removedBg = "#4a272f"
+removedContentBg = "#713137"
+removedSignColor = "#914c54"
+contextBg = "#1a1b26"
+contextContentBg = "#1a1b26"
+
+movedAddedBg = "#1f3243"
+movedRemovedBg = "#2f1f3a"
+
+lineNumberBg = "#16161e"
+lineNumberFg = "#3b4261"
+selectedHunk = "#292e42"
+
+badgeAdded = "#449dab"
+badgeRemoved = "#914c54"
+badgeNeutral = "#565f89"
+
+fileNew = "#9ece6a"
+fileDeleted = "#f7768e"
+fileRenamed = "#e0af68"
+fileModified = "#7aa2f7"
+fileUntracked = "#565f89"
+
+noteBackground = "#16161e"
+noteBorder = "#394b70"
+noteTitleBackground = "#1f2740"
+noteTitleText = "#7aa2f7"
+
+[custom_theme.syntax]
+default = "#c0caf5"
+keyword = "#bb9af7"
+string = "#9ece6a"
+comment = "#565f89"
+number = "#ff9e64"
+function = "#7aa2f7"
+property = "#7dcfff"
+type = "#2ac3de"
+punctuation = "#89ddff"

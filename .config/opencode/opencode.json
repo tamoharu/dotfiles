@@ -1,0 +1,59 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": "allow",
+  "instructions": [
+    "~/.claude/output-styles/concise.md"
+  ],
+  "lsp": true,
+  "autoupdate": true,
+  "provider": {
+    "llamacpp": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "llama.cpp",
+      "options": {
+        "baseURL": "{env:LLM_URL}/v1"
+      },
+      "models": {
+        "qwen3.6-35b-a3b": {
+          "name": "qwen3.6-35b-a3b",
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "qwen3.6-35b-a3b-hauhau": {
+          "name": "qwen3.6-35b-a3b-hauhau",
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "qwen3.6-27b-hauhau-balanced": {
+          "name": "qwen3.6-27b-hauhau-balanced",
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        }
+      }
+    }
+  },
+  "model": "llamacpp/qwen3.6-27b-hauhau-balanced",
+  "plugin": ["file://{env:HOME}/.config/opencode/plugins/abc-layout.js"],
+  "logLevel": "DEBUG",
+  "watcher": {
+    "ignore": ["node_modules/**", "dist/**", ".git/**"]
+  }
+}

@@ -1,0 +1,15 @@
+[[keywords]]
+words = ['[Info]']
+style = { fg = "green" }
+
+[[keywords]]
+words = ['[Warn]']
+style = { fg = "yellow" }
+
+[[keywords]]
+words = ['[Error]']
+style = { fg = "red" }
+
+[[keywords]]
+words = ['[Debug]']
+style = { fg = "cyan" }
