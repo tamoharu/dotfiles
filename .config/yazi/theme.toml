@@ -1,9 +1,6 @@
 # Source: folke/tokyonight.nvim extras/yazi/tokyonight_night.toml
 
 [mgr]
-# NOTE: can be combined with tmTheme (sublime colorshceme file) for preview code highlight
-syntect_theme = "~/.config/bat/themes/tokyonight_night.tmTheme"
-
 cwd = { fg = "#a9b1d6", italic = true }
 
 # Hovered

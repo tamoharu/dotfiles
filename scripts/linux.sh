@@ -4,7 +4,6 @@ GHQ_VERSION="1.10.1"
 HERDR_VERSION="0.7.5"
 HUNK_VERSION="0.17.0"
 LAZYGIT_VERSION="0.63.1"
-MISE_VERSION="2026.7.18"
 NEOVIM_VERSION="0.12.4"
 OPENCODE_VERSION="1.18.11"
 TAILSPIN_VERSION="7.0.0"
@@ -84,10 +83,6 @@ install_linux_binaries() {
   install_file \
     "https://github.com/herdrdev/herdr/releases/download/v$HERDR_VERSION/herdr-linux-$(github_arch)" \
     "$HOME/.local/bin/herdr"
-  install_file \
-    "https://github.com/jdx/mise/releases/download/v$MISE_VERSION/mise-v$MISE_VERSION-linux-$arch" \
-    "$HOME/.local/bin/mise"
-
   install_tar_binary \
     "https://github.com/modem-dev/hunk/releases/download/v$HUNK_VERSION/hunkdiff-linux-$arch.tar.gz" \
     hunk
@@ -125,10 +120,10 @@ install_packages() {
   echo "==> Installing Ubuntu packages"
   sudo apt-get update
   sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    autoconf bat bison btop build-essential curl direnv fd-find ffmpeg file fzf \
+    autoconf bison btop build-essential curl direnv fd-find ffmpeg file fzf \
     gh git git-lfs imagemagick jq libffi-dev libgdbm-dev libncurses-dev \
     libreadline-dev libssl-dev libyaml-dev locales p7zip-full poppler-utils \
-    ripgrep tmux trash-cli tree unzip wget xclip zlib1g-dev zoxide zsh \
+    ripgrep trash-cli tree unzip wget xclip zlib1g-dev zoxide zsh \
     zsh-autosuggestions zsh-syntax-highlighting
   sudo locale-gen en_US.UTF-8
 

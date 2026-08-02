@@ -25,7 +25,6 @@ alias fd='find . -type d -name'
 alias mkdir='mkdir -p'
 alias cp='cp -i'
 alias mv='mv -i'
-alias cat='bat'
 alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
@@ -41,7 +40,6 @@ else
   alias ls='ls --color=auto'
   alias la='ls -la --color=auto'
   alias C='xclip -selection clipboard'
-  alias bat='batcat'
 fi
 
 # tree
@@ -241,11 +239,6 @@ fi
 # direnv
 if command -v direnv &>/dev/null; then
   eval "$(direnv hook zsh)"
-fi
-
-# mise (Ruby etc.)
-if command -v mise &>/dev/null; then
-  eval "$(mise activate zsh)"
 fi
 
 # conf.d (用途別の設定を分割して読み込む。既存設定を上書きできるよう末尾)

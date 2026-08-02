@@ -34,7 +34,6 @@ return {
 			-- macOS
 			if vim.fn.has("mac") == 1 then
 				vim.list_extend(servers, {
-					"ruby_lsp",
 					"basedpyright",
 					"ruff",
 				})

@@ -1,2 +1,1 @@
 # Copy this file to ~/.config/zsh/local.zsh for machine-specific settings.
-# export LLM_URL="http://your-llm-host:8080"

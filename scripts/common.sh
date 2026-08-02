@@ -32,7 +32,7 @@ link_path() {
 
 is_linux_gui_config() {
   case "$1" in
-    espanso|ghostty|hammerspoon|karabiner|llama-swap|snapzy) return 0 ;;
+    espanso|ghostty|hammerspoon|karabiner) return 0 ;;
     *) return 1 ;;
   esac
 }
@@ -100,7 +100,6 @@ link_config() {
   done
 
   link_path "$DOTFILES/.config/zsh/.zshenv" "$HOME/.zshenv"
-  link_path "$DOTFILES/.config/tmux/tmux.conf" "$HOME/.tmux.conf"
   link_path "$DOTFILES/.config/codex/config.toml" "$CODEX_CONFIG_DIR/config.toml"
 
   if [[ "$OS" == Darwin && -d "$DOTFILES/.config/espanso" ]]; then
@@ -122,37 +121,6 @@ install_nvm() {
   npm install --global tree-sitter-cli
 }
 
-setup_bat_theme() {
-  local bat_cmd config_dir theme
-  if command -v bat >/dev/null 2>&1; then
-    bat_cmd=bat
-  elif command -v batcat >/dev/null 2>&1; then
-    bat_cmd=batcat
-  else
-    return
-  fi
-
-  config_dir="$($bat_cmd --config-dir)"
-  theme="$config_dir/themes/tokyonight_night.tmTheme"
-  mkdir -p "$(dirname "$theme")"
-  if [[ ! -f "$theme" ]]; then
-    curl -fsSL \
-      https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/sublime/tokyonight_night.tmTheme \
-      -o "$theme"
-  fi
-  "$bat_cmd" cache --build >/dev/null
-}
-
-setup_tmux_plugins() {
-  local tpm="$HOME/.tmux/plugins/tpm"
-  command -v tmux >/dev/null 2>&1 || return
-  if [[ ! -d "$tpm/.git" ]]; then
-    echo "==> Installing tmux plugin manager"
-    git clone https://github.com/tmux-plugins/tpm "$tpm"
-  fi
-  "$tpm/bin/install_plugins" >/dev/null 2>&1 || true
-}
-
 setup_zsh_plugins() {
   local plugin_root="$HOME/.local/share/zsh/plugins"
   mkdir -p "$plugin_root"
@@ -164,14 +132,6 @@ setup_zsh_plugins() {
   fi
 }
 
-setup_mise_tools() {
-  command -v mise >/dev/null 2>&1 || return
-  mise install --yes
-}
-
 post_install() {
-  setup_bat_theme
-  setup_tmux_plugins
   setup_zsh_plugins
-  setup_mise_tools
 }

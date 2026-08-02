@@ -47,8 +47,8 @@ gh auth login
 
 ## 含まれる環境
 
-- zsh、fzf、direnv、mise、nvm/Node.js
-- Neovim、Yazi、tmux、bat、btop、ripgrep、fd
+- zsh、fzf、direnv、nvm/Node.js
+- Neovim、Yazi、btop、ripgrep、fd
 - Git、GitHub CLI、ghq、Lazygit、Hunk
 - Codex CLI、OpenCode、Herdr
 - Ghostty、Hammerspoon、Karabiner、Espanso（macOS）
@@ -76,8 +76,8 @@ cp ~/.config/zsh/local.zsh.example ~/.config/zsh/local.zsh
 
 ```sh
 ssh queen
-tmux new-session -A -s dev
+herdr
 ```
 
-tmuxではGhosttyのtrue color、OSC 52クリップボード、Yaziの画像プロトコルを通し
-やすい設定を有効にしています。画像プレビューの可否は接続元ターミナルにも依存します。
+SSH先でもHerdrでワークスペースとペインを管理できます。画像プレビューの可否は
+接続元ターミナルにも依存します。
