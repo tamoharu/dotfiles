@@ -6,7 +6,7 @@ auto_switch = false
 
 [terminal]
 shell_mode = "auto"
-new_cwd = "follow"
+new_cwd = "/"
 
 [keys]
 prefix = "ctrl+b"
