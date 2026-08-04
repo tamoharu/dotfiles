@@ -6,13 +6,12 @@ auto_switch = false
 
 [terminal]
 shell_mode = "auto"
-new_cwd = "/"
+new_cwd = "follow"
 
 [keys]
 prefix = "ctrl+b"
 detach = "prefix+shift+q"
 goto = "prefix+alt+g"
-new_workspace = "prefix+shift+n"
 next_workspace = "prefix+@"
 previous_workspace = "prefix+backtick"
 navigate_workspace_down = "j"
@@ -46,6 +45,12 @@ switch_ascii_input_source_in_prefix = false
 reveal_hidden_cursor_for_cjk_ime = false
 cjk_ime_agents = ["claude", "opencode"]
 cjk_ime_cursor_shape = "block"
+
+[[keys.command]]
+key = "prefix+shift+n"
+type = "shell"
+command = '"$HERDR_BIN_PATH" workspace create --cwd "$HOME" --focus'
+description = "New Space"
 
 [[keys.command]]
 key = "prefix+shift+y"
