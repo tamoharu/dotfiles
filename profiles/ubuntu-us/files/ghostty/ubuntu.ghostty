@@ -1,0 +1,113 @@
+# Ghostty bindings for Ubuntu / Linux (US keyboard)
+#
+# Physical modifier roles are deliberately kept separate:
+#   Left/Right Ctrl -> terminal Ctrl
+#   Start/Windows   -> macOS-style Cmd (native Super)
+#
+# No modifier remap is used: Ctrl remains Ctrl and Super remains Super.
+
+# Codex composer: Start/Cmd+Enter emits Ctrl+Enter's CSI-u sequence.
+# Codex keeps plain Enter for a newline and binds Ctrl+Enter to submit.
+keybind = super+enter=text:\x1b[13;5u
+
+# ==============================
+# Cmd-equivalent application keys
+# ==============================
+
+# Copy only when a selection exists; otherwise forward Cmd+C to the TUI.
+keybind = performable:super+c=copy_to_clipboard:mixed
+keybind = super+v=paste_from_clipboard
+keybind = super+x=unbind
+
+# VS Code-style shortcuts are forwarded to Neovim/TUI applications.
+keybind = super+s=unbind
+keybind = super+p=unbind
+keybind = super+shift+p=unbind
+keybind = super+f=unbind
+keybind = super+shift+f=unbind
+keybind = super+z=unbind
+keybind = super+shift+z=unbind
+keybind = super+a=unbind
+
+# Both Alt keys are IME selectors, so use Cmd+Ctrl for displaced Ghostty
+# actions that use Cmd+Alt in the macOS config.
+keybind = super+ctrl+f=start_search
+keybind = super+ctrl+shift+f=end_search
+keybind = super+ctrl+a=select_all
+keybind = super+ctrl+shift+p=toggle_command_palette
+keybind = super+ctrl+z=undo
+keybind = super+ctrl+shift+z=redo
+
+# ==============================
+# Real Ctrl keys / Ghostty UI
+# ==============================
+
+# Ctrl+C/D/Z/V and similar unmodified controls remain available to the PTY.
+keybind = ctrl+shift+c=copy_to_clipboard:mixed
+keybind = ctrl+shift+v=paste_from_clipboard
+keybind = ctrl+shift+t=new_tab
+keybind = ctrl+shift+n=new_window
+keybind = ctrl+shift+w=close_surface
+keybind = ctrl+page_up=previous_tab
+keybind = ctrl+page_down=next_tab
+keybind = ctrl+shift+r=reload_config
+
+# ==============================
+# Herdr: macOS Cmd -> Ubuntu Cmd
+# ==============================
+
+# Window operations.
+keybind = super+t=text:\x02c
+keybind = super+w=text:\x02X
+
+keybind = super+digit_1=unbind
+keybind = super+digit_2=unbind
+keybind = super+digit_3=unbind
+keybind = super+digit_4=unbind
+keybind = super+digit_5=unbind
+keybind = super+digit_6=unbind
+keybind = super+digit_7=unbind
+keybind = super+digit_8=unbind
+keybind = super+digit_9=unbind
+keybind = super+one=text:\x021
+keybind = super+two=text:\x022
+keybind = super+three=text:\x023
+keybind = super+four=text:\x024
+keybind = super+five=text:\x025
+keybind = super+six=text:\x026
+keybind = super+seven=text:\x027
+keybind = super+eight=text:\x028
+keybind = super+nine=text:\x029
+
+keybind = super+shift+bracket_right=text:\x02n
+keybind = super+b=text:\x02b
+
+# This was Ctrl (not Cmd) in the macOS config; keep it as real Ctrl.
+keybind = ctrl+q=text:\x02\x1bg
+
+# Popups.
+keybind = super+y=text:\x02Y
+keybind = super+h=text:\x02H
+keybind = super+l=text:\x02L
+keybind = super+j=text:\x02J
+
+# Panes.
+keybind = super+d=text:\x02v
+keybind = super+shift+d=text:\x02-
+
+# Spaces.
+keybind = super+shift+n=text:\x02N
+# The US-keyboard backquote key sits above Tab.
+keybind = super+backquote=text:\x02@
+keybind = super+shift+backquote=text:\x02`
+
+# Defensive reset: plain arrows must be encoded for the PTY, not consumed by
+# an imported key binding.
+keybind = up=unbind
+keybind = down=unbind
+keybind = left=unbind
+keybind = right=unbind
+
+# Keep local/SSH terminfo and shell integration in sync with Ghostty.
+shell-integration = detect
+shell-integration-features = sudo,ssh-env,ssh-terminfo

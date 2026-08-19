@@ -1,0 +1,13 @@
+status	key	command
+DirectInput	Muhenkan	IMEOff
+DirectInput	Henkan	IMEOn
+Precomposition	Muhenkan	IMEOff
+Precomposition	Henkan	IMEOn
+Composition	Muhenkan	IMEOff
+Composition	Henkan	IMEOn
+Conversion	Muhenkan	IMEOff
+Conversion	Henkan	IMEOn
+Suggestion	Muhenkan	IMEOff
+Suggestion	Henkan	IMEOn
+Prediction	Muhenkan	IMEOff
+Prediction	Henkan	IMEOn

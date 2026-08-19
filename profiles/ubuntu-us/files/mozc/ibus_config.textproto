@@ -1,0 +1,7 @@
+engines {
+  name : "mozc-jp"
+  longname : "Mozc"
+  # The physical keyboard is ANSI/US. Keep Mozc's base keymap independent
+  # from the machine-wide /etc/default/keyboard value.
+  layout : "us"
+}

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+exec /usr/bin/gdbus call \
+  --session \
+  --dest org.gnome.Shell \
+  --object-path /org/gnome/Shell \
+  --method org.freedesktop.DBus.Properties.Set \
+  org.gnome.Shell OverviewActive '<false>'

@@ -1,0 +1,3 @@
+# Ubuntu entry point. Keep platform-specific bindings separate from the
+# repository's existing macOS Ghostty configuration.
+config-file = "ubuntu.ghostty"

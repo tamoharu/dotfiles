@@ -72,6 +72,12 @@ cp ~/.config/zsh/local.zsh.example ~/.config/zsh/local.zsh
 
 `local.zsh` はgitignoreされています。
 
+## オプションのデスクトッププロファイル
+
+Ubuntu GNOMEとUSキーボードでmacOS風の修飾キー・IME・Ghostty操作を使う場合は、
+通常の設定と分離された [`profiles/ubuntu-us`](profiles/ubuntu-us/README.md) を
+明示的に導入します。
+
 ## SSHでの利用
 
 ```sh

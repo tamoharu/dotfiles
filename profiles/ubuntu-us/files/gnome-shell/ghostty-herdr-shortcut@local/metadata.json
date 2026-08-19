@@ -1,0 +1,9 @@
+{
+  "uuid": "ghostty-herdr-shortcut@local",
+  "name": "Ghostty Herdr Shortcut",
+  "description": "Let Ghostty use Start+backquote for Herdr while preserving GNOME window switching in other applications.",
+  "shell-version": [
+    "46"
+  ],
+  "version": 1
+}
